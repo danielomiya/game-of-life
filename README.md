@@ -11,7 +11,7 @@ A simulator of the cellular automaton designed by John Conway in 1970.
 
 Clone the repository:
 
-    $ git clone https://github.com/gwyddie/log-parser
+    $ git clone https://github.com/gwyddie/game-of-life
 
 Build and run the container:
 
