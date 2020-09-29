@@ -44,7 +44,7 @@ int _count_neighbors(Generation *generation, int row, int col)
         if (pos_i >= generation->height)
             break; // last row
 
-        for (j = -1; i < 2; j++)
+        for (j = -1; j < 2; j++)
         {
             pos_j = col + j;
 
