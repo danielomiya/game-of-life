@@ -18,4 +18,5 @@ FROM ubuntu:focal
 
 WORKDIR /app
 COPY --from=build /usr/src/app/build/main ./
-CMD ["./main"]
+
+CMD ["sh", "-c", "./main"]
