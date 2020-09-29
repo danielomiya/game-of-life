@@ -21,11 +21,12 @@ The function for creating new generations follows some basic rules:
 
 ## How to run it
 
-Clone the repository:
+Clone the repository and cd into it:
 
     $ git clone https://github.com/gwyddie/game-of-life
+    $ cd game-of-life
 
 Build and run the container:
 
-    $ docker build -t gameoflife .
-    $ docker run --name gameoflife gameoflife
+    $ docker-compose build
+    $ docker-compose run app
