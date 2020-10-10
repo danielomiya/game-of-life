@@ -8,9 +8,10 @@
 
 #include "generation.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 void input_generation(Generation *generation);
+void output_generation(Generation *generation);
 
 int main(int argc, char **argv)
 {
@@ -18,17 +19,21 @@ int main(int argc, char **argv)
     Generation *generation = malloc(sizeof(Generation)), *tmp;
 
 #if DEBUG
-    height = 6, width = 5;
+    height = 3, width = 3;
 #else
     printf("Enter number of rows: ");
-    scanf_s("%d", &height);
+    scanf("%d", &height);
 
     printf("Enter number of columns: ");
-    scanf_s("%d", &width);
+    scanf("%d", &width);
 #endif
 
     init_generation(generation, height, width);
     input_generation(generation);
+
+    FILE *file;
+    file = fopen("/app/data/output.txt", "wb");
+    fclose(file);
 
     do
     {
@@ -46,62 +51,49 @@ int main(int argc, char **argv)
         free_generation(generation);
 
         generation = tmp;
+
+        output_generation(generation);
     } while (1);
+
+
 }
 
 void input_generation(Generation *generation)
 {
-    /// TODO: find better ways to input first generation
-#if DEBUG
+    int i, j, rows, columns;
+    int cont = 0;
+    int a;
+    FILE *file;
 
-    generation->cells[0][0] = 0;
-    generation->cells[0][1] = 0;
-    generation->cells[0][2] = 0;
-    generation->cells[0][3] = 0;
-    generation->cells[0][4] = 0;
+    rows = generation->height;
+    columns = generation->width;
 
-    generation->cells[1][0] = 0;
-    generation->cells[1][1] = 0;
-    generation->cells[1][2] = 1;
-    generation->cells[1][3] = 0;
-    generation->cells[1][4] = 0;
-
-    generation->cells[2][0] = 0;
-    generation->cells[2][1] = 0;
-    generation->cells[2][2] = 1;
-    generation->cells[2][3] = 0;
-    generation->cells[2][4] = 0;
-
-    generation->cells[3][0] = 0;
-    generation->cells[3][1] = 0;
-    generation->cells[3][2] = 1;
-    generation->cells[3][3] = 0;
-    generation->cells[3][4] = 0;
-
-    generation->cells[4][0] = 0;
-    generation->cells[4][1] = 0;
-    generation->cells[4][2] = 1;
-    generation->cells[4][3] = 0;
-    generation->cells[4][4] = 0;
-
-    generation->cells[5][0] = 0;
-    generation->cells[5][1] = 0;
-    generation->cells[5][2] = 0;
-    generation->cells[5][3] = 0;
-    generation->cells[5][4] = 0;
-
-#else
-
-    int i, j;
-
-    for (i = 0; i < generation->height; i++)
-    {
-        for (j = 0; j < generation->width; j++)
-        {
-            printf("Enter value of m(%d, %d): ", i, j);
-            scanf_s("%d", &generation->cells[i][j]);
+    if ((file = fopen("/app/data/input.txt", "r")) != NULL){
+        for (i = 0; i < rows; i++){
+            for (j = 0; j < columns; j++){ 
+                fscanf(file, "%i", &a);
+                generation->cells[i][j] = a;
+            }
         }
     }
+}
 
-#endif
+void output_generation(Generation *generation){
+  int i, j, rows, columns;
+    int cont = 0;
+    FILE *file;
+
+    rows = generation->height;
+    columns = generation->width;
+
+    if ((file = fopen("/app/data/output.txt", "a")) != NULL){
+        for (i = 0; i < rows; i++){
+          for (j = 0; j < columns; j++){ 
+            fprintf(file, "%i ", generation->cells[i][j]);
+          }
+          fprintf(file, "\n");
+        }
+      fprintf(file, "\n");
+      fclose(file);
+    }
 }

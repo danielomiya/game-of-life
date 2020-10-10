@@ -4,3 +4,5 @@ services:
   app:
     build: .
     container_name: gameoflife_app
+    volumes:
+      - ./data:/app/data
