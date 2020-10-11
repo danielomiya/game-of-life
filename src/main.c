@@ -31,10 +31,6 @@ int main(int argc, char **argv)
     init_generation(generation, height, width);
     input_generation(generation);
 
-    FILE *file;
-    file = fopen("/app/data/output.txt", "wb");
-    fclose(file);
-
     do
     {
         print_generation(generation);
@@ -68,7 +64,7 @@ void input_generation(Generation *generation)
     rows = generation->height;
     columns = generation->width;
 
-    if ((file = fopen("/app/data/input.txt", "r")) != NULL){
+    if ((file = fopen("data/input.txt", "r")) != NULL){
         for (i = 0; i < rows; i++){
             for (j = 0; j < columns; j++){ 
                 fscanf(file, "%i", &a);
@@ -86,7 +82,7 @@ void output_generation(Generation *generation){
     rows = generation->height;
     columns = generation->width;
 
-    if ((file = fopen("/app/data/output.txt", "a")) != NULL){
+    if ((file = fopen("data/output.txt", "a")) != NULL){
         for (i = 0; i < rows; i++){
           for (j = 0; j < columns; j++){ 
             fprintf(file, "%i ", generation->cells[i][j]);
