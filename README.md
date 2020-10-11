@@ -2,6 +2,12 @@
 
 A simulator of the cellular automaton designed by John Conway in 1970.
 
+## Contributors
+
+- Daniel Omiya - 41995449
+- Hugo Amorim Martins - 41991184
+- Nicole Martins dos Santos - 41990277
+
 ## Built with
 
 - C language
@@ -30,3 +36,15 @@ Build and run the container:
 
     $ docker-compose build
     $ docker-compose run app
+
+Or, instead of using Docker, you can also build it in your own machine, using:
+
+    $ mkdir build && cd $_
+    $ cmake ..
+    $ make
+
+The executable will be available at `./main`.
+
+---
+
+That's all, thanks! :p
