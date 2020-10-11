@@ -43,7 +43,7 @@ Or, instead of using Docker, you can also build it in your own machine, using:
     $ cmake ..
     $ make
 
-The executable will be available at `./main`.
+The executable will be available at `./main` (it will attempt to find data on relative path `data/input.txt`, so run it from project root).
 
 ---
 
